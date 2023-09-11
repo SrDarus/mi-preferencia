@@ -62,7 +62,7 @@ public class PaisController {
             response.put("Error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<Map<String, Object> >(response, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<Long>(newPais.getPai_id(), HttpStatus.CREATED); 
+        return new ResponseEntity<Long>(newPais.getId(), HttpStatus.CREATED); 
     }
 
     @GetMapping("/{id}")
@@ -100,14 +100,14 @@ public class PaisController {
             return new ResponseEntity<Map<String, Object> >(response, HttpStatus.BAD_REQUEST);
         }
 
-        var paisDb = paisService.findById(pais.getPai_id());
+        var paisDb = paisService.findById(pais.getId());
  
         if(paisDb == null) {
             response.put("mensaje", "El Pais con id: ".concat(id.toString()).concat(" no existe"));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND) ;
         }
         try {
-            paisDb.setPai_nombre(pais.getPai_nombre());
+            paisDb.setNombre(pais.getNombre());
             paisActualizado =  paisService.save(paisDb);
 
             return new ResponseEntity<Pais>(paisActualizado, HttpStatus.CREATED);

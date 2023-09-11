@@ -16,10 +16,31 @@ public class Region implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reg_id;
+    @Column(name="reg_id")
+    private Long id;
+    @Column(name = "reg_nombre", unique = true, length = 20)
+    private String nombre;
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_pais_region"), name = "pai_id", referencedColumnName = "pai_id")
+    // @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "com_id")
+    private Pais pais;
 
-    @Column(unique = true, length = 20)
-    private String reg_nombre;
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public Pais getPais() {
         return pais;
@@ -27,28 +48,6 @@ public class Region implements Serializable {
 
     public void setPais(Pais pais) {
         this.pais = pais;
-    }
-
-    @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_pais_region"), name = "pai_id", referencedColumnName = "pai_id")
-    // @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "com_id")
-    private Pais pais;
-
-    public Long getReg_id() {
-        return reg_id;
-    }
-
-    public void setReg_id(Long reg_id) {
-        this.reg_id = reg_id;
-    }
-
-
-    public String getReg_nombre() {
-        return reg_nombre;
-    }
-
-    public void setReg_nombre(String reg_nombre) {
-        this.reg_nombre = reg_nombre;
     }
 
     private static final long serialVersionUID = 2L;

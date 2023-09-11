@@ -25,19 +25,21 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long usu_id;
-    private Long com_id;
-    @Column(length = 50)
-    private String resto_direccion;
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(name = "usu_id")
+    private Long id;
+    @Column(name = "com_id")
+    private Long comId;
+    @Column(name = "usu_resto_direccion", length = 50)
+    private String restoDireccion;
+    @Column(name = "usu_nombres", nullable = false, unique = true, length = 20)
     private String nombres;
-    @Column(length = 20)
+    @Column(name = "usu_apellidos", length = 20)
     private String apellidos;
     @Email
-    @Column(unique = true, length = 50)
+    @Column(name = "usu_correo", unique = true, length = 50)
     private String correo;
-    @Column(length = 50)
-    private String password;
+    @Column(name = "usu_pass", length = 50)
+    private String pass;
     /*foreign keys */
     @JoinTable(
         name="usuario_rol", 
@@ -49,54 +51,83 @@ public class Usuario implements Serializable {
     @ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     private List<Rol> roles;
 
-    public List<Rol> getRoles() {
-        return roles;
+    
+    public Long getId() {
+        return id;
     }
-    public void setRoles(List<Rol> roles) {
-        this.roles = roles;
+
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    public Long getUsu_id() {
-        return usu_id;
+
+
+
+    public Long getComId() {
+        return comId;
     }
-    public void setUsu_id(Long usu_id) {
-        this.usu_id = usu_id;
+
+
+    public void setComId(Long comId) {
+        this.comId = comId;
     }
-    public Long getCom_id() {
-        return com_id;
+
+
+    public String getRestoDireccion() {
+        return restoDireccion;
     }
-    public void setCom_id(Long com_id) {
-        this.com_id = com_id;
+
+
+    public void setRestoDireccion(String restoDireccion) {
+        this.restoDireccion = restoDireccion;
     }
-    public String getResto_direccion() {
-        return resto_direccion;
-    }
-    public void setResto_direccion(String resto_direccion) {
-        this.resto_direccion = resto_direccion;
-    }
+
+
     public String getNombres() {
         return nombres;
     }
+
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
+
     public String getApellidos() {
         return apellidos;
     }
+
+
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
+    
     public String getCorreo() {
         return correo;
     }
+
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
+    
+
+    public String getPass() {
+        return pass;
     }
 
-	private static final long serialVersionUID = 4L;
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
+    }
+
+
+    private static final long serialVersionUID = 4L;
 }

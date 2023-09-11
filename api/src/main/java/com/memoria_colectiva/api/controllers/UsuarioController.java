@@ -27,10 +27,12 @@ public class UsuarioController {
         return usuarioService.findAll();
     }
 
-    
+
     @GetMapping("by-correo/{correo}")
     public Usuario byCorreo(@PathVariable String correo){
-        return usuarioService.findByCorreo(correo);
+        Usuario usuario =  usuarioService.findByCorreo(correo);
+        System.out.println(usuario);
+        return usuario;
     }
 
     @PostMapping("save")

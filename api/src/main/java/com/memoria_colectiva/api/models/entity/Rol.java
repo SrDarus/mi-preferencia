@@ -15,27 +15,28 @@ public class Rol implements Serializable {
     
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Long rol_id;
+    @Column(name ="rol_id")
+    private Long id;
     @NotEmpty
     @Size(min = 2)
-    @Column(unique = true, length = 20)
-    private String rol_nombre;
+    @Column(name="rol_nombre", unique = true, length = 20)
+    private String nombre;
 
-    public Long getRol_id() {
-        return rol_id;
-    }
-    public void setRol_id(Long rol_id) {
-        this.rol_id = rol_id;
+    public Long getId() {
+        return id;
     }
 
-
-    public String getRol_nombre() {
-        return rol_nombre;
-    }
-    public void setRol_nombre(String rol_nombre) {
-        this.rol_nombre = rol_nombre;
+    public void setId(Long id) {
+        this.id = id;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     private static final long serialVersionUID = 5L;
 
