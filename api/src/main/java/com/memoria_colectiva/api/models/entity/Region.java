@@ -18,8 +18,10 @@ public class Region implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="reg_id")
     private Long id;
+    
     @Column(name = "reg_nombre", unique = true, length = 20)
     private String nombre;
+    
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_pais_region"), name = "pai_id", referencedColumnName = "pai_id")
     // @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "com_id")

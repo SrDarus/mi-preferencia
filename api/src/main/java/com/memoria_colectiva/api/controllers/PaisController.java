@@ -72,7 +72,8 @@ public class PaisController {
         try {
             newPais = paisService.findById(id);
         } catch (Exception e) {
-            // TODO: handle exception
+            response.put("No se pudo registrar el pais", "El Pais con id: ".concat(id.toString()).concat(" no existe"));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST) ;
         }
 
         if(newPais == null) {

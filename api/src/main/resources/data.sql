@@ -9,8 +9,12 @@ insert into region (reg_nombre, pai_id) value ("valparaiso", 1);
 insert into comuna (com_nombre, reg_id) value ("santiago", 1 );
 insert into comuna (com_nombre, reg_id) value ("quintero", 2);
 
-insert into rol (rol_nombre) values ("admin");
-insert into rol (rol_nombre) values ("cliente");
+insert into cliente (cli_nombres, cli_apellidos, cli_correo, cli_pass, cli_resto_direccion, com_id) value ("claudio", "vargas", "claudiovargaslillo@gmail.com", "admin", "parcela 112", 1);
 
-insert into usuario (usu_nombres, usu_apellidos, usu_correo, usu_pass, usu_resto_direccion, com_id) value ("claudio", "vargas", "claudiovargaslillo@gmail.com", "admin", "parcela 112", 1);
-insert into usuario_rol (usu_id, rol_id) values (1, 1);
+insert into usuario (usu_username, usu_password) values ("darus", "1234");
+
+insert into authority (aut_name) value ("READ");
+insert into authority (aut_name) value ("WRITE");
+insert into authority (aut_name) value ("ADMIN");
+
+insert into usuario_authority (usu_id, aut_id) values (1, 1);  
